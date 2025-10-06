@@ -1,0 +1,47 @@
+{
+  "base_weights": {
+    "user": 0.34,
+    "meta": 0.33,
+    "self": 0.33
+  },
+  "rules": [
+    {
+      "name": "personal_queries",
+      "pattern": "\\b(i|my|me|we|our)\\b|my schedule|last time",
+      "adjustments": {
+        "user": 0.2,
+        "meta": -0.1,
+        "self": -0.1
+      }
+    },
+    {
+      "name": "principle_conflicts",
+      "condition": "has_tension",
+      "adjustments": {
+        "user": -0.1,
+        "meta": 0.2,
+        "self": -0.1
+      }
+    },
+    {
+      "name": "reflection_requests",
+      "pattern": "reflect|why|meaning|who are you",
+      "adjustments": {
+        "user": -0.1,
+        "meta": -0.1,
+        "self": 0.2
+      }
+    },
+    {
+      "name": "low_clarity",
+      "condition": "clarity < 0.5",
+      "adjustments": {
+        "user": -0.1,
+        "meta": -0.1,
+        "self": 0.2
+      }
+    }
+  ],
+  "version": "1.0.0",
+  "last_updated": "2025-01-18T18:00:00.000Z"
+}
